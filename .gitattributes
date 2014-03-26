@@ -1,0 +1,4 @@
+# Keep source files with native EOL
+*.c text
+*.cpp text
+*.h text

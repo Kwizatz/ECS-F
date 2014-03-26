@@ -1,0 +1,18 @@
+# AStyle original file backup #
+###############################
+*.orig
+
+# Windows Executables         #
+###############################
+*.exe
+*.dll
+
+# Compressed Files            #
+###############################
+*.tar.gz
+*.tar.bz2
+*.zip
+
+# Android local properties    #
+###############################
+local.properties
