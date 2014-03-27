@@ -23,9 +23,9 @@ namespace ECSF
         ~Entity();
         void AttachComponent ( Component* component );
         void DetachComponent ( Component* component );
-		Component* GetComponent(uint32_t component_type_id);
-		Component* GetComponent(const char* component_type_id_string);
-	private:
+        Component* GetComponent ( uint32_t component_type_id );
+        Component* GetComponent ( const char* component_type_id_string );
+    private:
         std::map<uint32_t, Component*> components;
     };
 }

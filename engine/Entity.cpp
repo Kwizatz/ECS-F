@@ -34,19 +34,19 @@ namespace ECSF
         }
     }
 
-	Component* Entity::GetComponent(uint32_t component_type_id)
-	{
-		/* If the entity already has a component of this type, do not replace it */
-		std::map<uint32_t, Component*>::iterator i = components.find(component_type_id);
-		if (i == components.end())
-		{
-			return NULL;
-		}
-		return i->second;
-	}
+    Component* Entity::GetComponent ( uint32_t component_type_id )
+    {
+        /* If the entity already has a component of this type, do not replace it */
+        std::map<uint32_t, Component*>::iterator i = components.find ( component_type_id );
+        if ( i == components.end() )
+        {
+            return NULL;
+        }
+        return i->second;
+    }
 
-	Component* Entity::GetComponent(const char* type_id_string)
-	{
-		return GetComponent(CRC32(reinterpret_cast<const uint8_t*>(type_id_string),static_cast<uint32_t>(strlen(type_id_string))));
-	}
+    Component* Entity::GetComponent ( const char* type_id_string )
+    {
+        return GetComponent ( CRC32 ( reinterpret_cast<const uint8_t*> ( type_id_string ), static_cast<uint32_t> ( strlen ( type_id_string ) ) ) );
+    }
 }
