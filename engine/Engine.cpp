@@ -4,7 +4,7 @@
 
 namespace ECSF
 {
-    Engine::Engine()
+    Engine::Engine() : next_entity_id ( 0 )
     {
     }
 
@@ -65,8 +65,39 @@ namespace ECSF
     {
         for ( std::vector<System*>::iterator i = systems.begin(); i != systems.end(); ++i )
         {
+            if ( ( *i )->PreUpdate != NULL )
+            {
+                ( *i )->PreUpdate();
+            }
             /* Call System Update Function */
             ( *i )->Update();
+            if ( ( *i )->PostUpdate != NULL )
+            {
+                ( *i )->PostUpdate();
+            }
+        }
+    }
+
+    Entity* Engine::NewEntity()
+    {
+        Entity* entity = new Entity ( next_entity_id++ );
+        if ( entity != NULL )
+        {
+            entities.push_back ( entity );
+        }
+        return entity;
+    }
+
+    void Engine::DeleteEntity ( Entity* entity )
+    {
+        if ( entity != NULL )
+        {
+            std::vector<Entity*>::iterator i = std::find ( entities.begin(), entities.end(), entity );
+            if ( i != entities.end() )
+            {
+                entities.erase ( i );
+            }
+            delete entity;
         }
     }
 }

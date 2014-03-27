@@ -1,6 +1,7 @@
 #ifndef ECSFENTITY_H
 #define ECSFENTITY_H
 #include "ECSFPlatform.h"
+#include "ECSFSystem.h"
 #include "ECSFComponent.h"
 #include <stdint.h>
 #include <map>
@@ -19,13 +20,17 @@ namespace ECSF
     class DLL Entity
     {
     public:
-        Entity();
-        ~Entity();
+        const uint32_t GetId() const;
         void AttachComponent ( Component* component );
         void DetachComponent ( Component* component );
         Component* GetComponent ( uint32_t component_type_id );
         Component* GetComponent ( const char* component_type_id_string );
     private:
+        /* Only the Engine class should be able to create entities */
+        friend class Engine;
+        Entity ( uint32_t id );
+        ~Entity();
+        uint32_t id;
         std::map<uint32_t, Component*> components;
     };
 }

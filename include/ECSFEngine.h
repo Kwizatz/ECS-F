@@ -2,6 +2,7 @@
 #define ECSFENGINE_H
 #include "ECSFPlatform.h"
 #include "ECSFSystem.h"
+#include "ECSFEntity.h"
 #include <stdint.h>
 #include <map>
 #include <vector>
@@ -25,6 +26,8 @@ namespace ECSF
         void AttachSystem ( System* system );
         void DetachSystem ( System* system );
         void Update();
+        Entity* NewEntity();
+        void DeleteEntity ( Entity* entity );
     private:
         /*  We'll only allow systems themselves to subscribe or unsubscribe
             to any events.
@@ -32,10 +35,13 @@ namespace ECSF
         friend class System;
         void Subscribe ( uint32_t message, System* system );
         void Unsubscribe ( uint32_t message, System* system );
+        uint32_t next_entity_id;
         /// Our Mailbox for the observer pattern
         std::map<uint32_t, std::vector<System*> > mailbox;
         /// Our collection of Systems
         std::vector<System*> systems;
+        /// Our collection of Entities
+        std::vector<Entity*> entities;
     };
 }
 #ifdef _MSC_VER

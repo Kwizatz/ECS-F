@@ -13,10 +13,13 @@ namespace ECSF
         virtual void OnAttach() = 0;
         virtual void OnDetach() = 0;
         virtual void ProcessMessage ( uint32_t message ) = 0;
-        virtual void Update() = 0;
         Engine* GetEngine();
+    protected:
+        void ( *PreUpdate ) ();
+        void ( *PostUpdate ) ();
     private:
         friend class Engine;
+        virtual void Update() = 0;
         Engine* engine;
     };
 }

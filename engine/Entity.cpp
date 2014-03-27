@@ -4,12 +4,17 @@
 #include <assert.h>
 namespace ECSF
 {
-    Entity::Entity()
+    Entity::Entity ( uint32_t id ) : id ( 0 )
     {
     }
 
     Entity::~Entity()
     {
+    }
+
+    const uint32_t Entity::GetId() const
+    {
+        return id;
     }
 
     void Entity::AttachComponent ( Component* component )

@@ -3,7 +3,10 @@
 #include <stddef.h>
 namespace ECSF
 {
-    System::System() : engine ( NULL )
+    System::System() :
+        PreUpdate ( NULL ),
+        PostUpdate ( NULL ),
+        engine ( NULL )
     {
     }
 
