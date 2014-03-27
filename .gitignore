@@ -16,3 +16,13 @@
 # Android local properties    #
 ###############################
 local.properties
+
+# Compilation and Build Files #
+###############################
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.o
+*.obj
+*.lib
+*.tlog
