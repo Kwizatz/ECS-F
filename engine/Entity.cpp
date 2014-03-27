@@ -1,6 +1,7 @@
 #include "crc.h"
 #include "ECSFEntity.h"
 #include <stddef.h>
+#include <string.h>
 #include <assert.h>
 namespace ECSF
 {
