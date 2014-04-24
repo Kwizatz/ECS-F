@@ -1,47 +1,3 @@
-/** Example 001 HelloWorld
-
-This Tutorial shows how to set up the IDE for using the Irrlicht Engine and how
-to write a simple HelloWorld program with it. The program will show how to use
-the basics of the VideoDriver, the GUIEnvironment, and the SceneManager.
-Microsoft Visual Studio is used as an IDE, but you will also be able to
-understand everything if you are using a different one or even another
-operating system than windows.
-
-You have to include the header file <irrlicht.h> in order to use the engine. The
-header file can be found in the Irrlicht Engine SDK directory \c include. To let
-the compiler find this header file, the directory where it is located has to be
-specified. This is different for every IDE and compiler you use. Let's explain
-shortly how to do this in Microsoft Visual Studio:
-
-- If you use Version 6.0, select the Menu Extras -> Options.
-  Select the directories tab, and select the 'Include' Item in the combo box.
-  Add the \c include directory of the irrlicht engine folder to the list of
-  directories. Now the compiler will find the Irrlicht.h header file. We also
-  need the irrlicht.lib to be found, so stay in that dialog, select 'Libraries'
-  in the combo box and add the \c lib/VisualStudio directory.
-  \image html "vc6optionsdir.jpg"
-  \image latex "vc6optionsdir.jpg"
-  \image html "vc6include.jpg"
-  \image latex "vc6include.jpg"
-
-- If your IDE is Visual Studio .NET, select Tools -> Options.
-  Select the projects entry and then select VC++ directories. Select 'show
-  directories for include files' in the combo box, and add the \c include
-  directory of the irrlicht engine folder to the list of directories. Now the
-  compiler will find the Irrlicht.h header file. We also need the irrlicht.lib
-  to be found, so stay in that dialog, select 'show directories for Library
-  files' and add the \c lib/VisualStudio directory.
-  \image html "vcnetinclude.jpg"
-  \image latex "vcnetinclude.jpg"
-
-That's it. With your IDE set up like this, you will now be able to develop
-applications with the Irrlicht Engine.
-
-Lets start!
-
-After we have set up the IDE, the compiler will know where to find the Irrlicht
-Engine header files so we can include it now in our code.
-*/
 #include <irrlicht.h>
 
 /*
@@ -135,7 +91,7 @@ int main()
     'L' in front of the string. The Irrlicht Engine uses wide character
     strings when displaying text.
     */
-    device->setWindowCaption ( L"Hello World! - Irrlicht Engine Demo" );
+    device->setWindowCaption ( L"AeonGames ECS-F - Irrlicht Engine Demo" );
 
     /*
     Get a pointer to the VideoDriver, the SceneManager and the graphical
@@ -232,7 +188,3 @@ int main()
 
     return 0;
 }
-
-/*
-That's it. Compile and run.
-**/
