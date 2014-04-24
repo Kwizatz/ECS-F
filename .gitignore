@@ -30,3 +30,10 @@ local.properties
 # Externals                   #
 ###############################
 irrlicht-1.8.1.zip
+irrlicht-1.8.1
+
+# Possible Build directories  #
+###############################
+x64
+x32
+codeblocks
