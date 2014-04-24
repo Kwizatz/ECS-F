@@ -4,6 +4,8 @@ cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
 PROJECT(ECS-F)
 
+OPTION(BUILD_DEMO "Build an executable demo (requires and downloads the Irrlicht engine)")
+
 IF(CMAKE_COMPILER_IS_GNUCXX)
 # -std=c++0x is required to be able to include stdint.h as cstdint, weird, I know.
 # But then CUDA doesn't like c++0x, so stick to .h files until it does *sigh*
@@ -20,6 +22,23 @@ SET(CMAKE_C_FLAGS_RELEASE "-DNDEBUG -fomit-frame-pointer -O3")
 SET(CMAKE_C_FLAGS_DEBUG "-DDEBUG -g -O0")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 ENDIF(CMAKE_COMPILER_IS_GNUC)
+
+if(BUILD_DEMO)
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/irrlicht-1.8.1.zip")
+message(STATUS "Downloading Irrlicht...")
+set(ENV{http_proxy} "${HTTP_PROXY}")
+file(DOWNLOAD "http://downloads.sourceforge.net/irrlicht/irrlicht-1.8.1.zip" "${CMAKE_SOURCE_DIR}/irrlicht-1.8.1.zip" STATUS irrlicht_dl_status LOG irrlicht_dl_log SHOW_PROGRESS)
+if(NOT irrlicht_dl_status MATCHES "0;\"no error\"")
+message("Download failed, are you behind a proxy? ${irrlicht_dl_status}")
+endif(NOT irrlicht_dl_status MATCHES "0;\"no error\"")
+message(STATUS "Done downloading Irrlicht")
+endif(NOT EXISTS "${CMAKE_SOURCE_DIR}/irrlicht-1.8.1.zip")
+
+if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/irrlicht-1.8.1")
+message(STATUS "Extracting Irrlicht")
+execute_process(COMMAND cmake -E tar xzvf irrlicht-1.8.1.zip WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+endif(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/irrlicht-1.8.1")
+endif(BUILD_DEMO)
 
 INCLUDE_DIRECTORIES(include common/crc)
 SUBDIRS(common/crc engine)

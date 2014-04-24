@@ -26,3 +26,7 @@ local.properties
 *.obj
 *.lib
 *.tlog
+
+# Externals                   #
+###############################
+irrlicht-1.8.1.zip
